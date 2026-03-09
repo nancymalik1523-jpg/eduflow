@@ -960,7 +960,7 @@
     </div>
 
     <!-- ========== WHATSAPP BUTTON ========== -->
-    <a href="https://wa.me/1234567890?text=Hello%20EduFlow!%20I%20need%20help%20with%20my%20course." class="whatsapp-btn" target="_blank" title="Chat on WhatsApp">
+    <a href="https://wa.me/917988436773?text=Hello%20I%20need%20help%20with%20courses" class="whatsapp-btn" target="_blank" title="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -1103,5 +1103,23 @@
         // Example: https://wa.me/919876543210?text=Hello
         // Format: Country code + Phone number (without + or -)
     </script>
+
+<!-- IBM Watson Assistant Integration -->
+<script>
+  window.watsonAssistantChatOptions = {
+    integrationID: "9339891f-b32a-4a8f-b993-bcd321d6b838",
+    region: "eu-de",
+    serviceInstanceID: "c3cc3771-820a-448a-8092-abc45cc9e60a",
+    onLoad: async (instance) => { await instance.render(); }
+  };
+  setTimeout(function(){
+    const t=document.createElement('script');
+    t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + 
+    (window.watsonAssistantChatOptions.clientVersion || 'latest') + 
+    "/WatsonAssistantChatEntry.js";
+    document.head.appendChild(t);
+  });
+</script>
+
 </body>
 </html>
