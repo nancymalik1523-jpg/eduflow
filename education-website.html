@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduFlow - Modern Online Learning Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1e40af;
+            --secondary-color: #0f766e;
+            --accent-color: #f97316;
+            --light-bg: #f8fafc;
+            --dark-text: #0f172a;
+            --light-text: #64748b;
+            --border-color: #e2e8f0;
+            --shadow: 0 10px 40px rgba(15, 23, 42, 0.1);
+            --shadow-lg: 0 20px 60px rgba(15, 23, 42, 0.15);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
+            color: var(--dark-text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ========== HEADER & NAVIGATION ========== */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(30, 64, 175, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--light-bg);
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--dark-text);
+        }
+
+        .hero-content .highlight {
+            background: linear-gradient(120deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--light-text);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floating-card {
+            position: absolute;
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .card-1 {
+            width: 250px;
+            animation-delay: 0s;
+        }
+
+        .card-2 {
+            width: 200px;
+            top: 100px;
+            right: 20px;
+            animation-delay: 0.5s;
+        }
+
+        .card-3 {
+            width: 200px;
+            bottom: 50px;
+            left: 20px;
+            animation-delay: 1s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .stat-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(30, 64, 175, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-badge i {
+            color: var(--primary-color);
+        }
+
+        /* ========== FEATURES SECTION ========== */
+        .features {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--dark-text);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--light-text);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-top: 4px solid transparent;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-top-color: var(--accent-color);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.1), rgba(15, 118, 110, 0.1));
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--dark-text);
+        }
+
+        .feature-card p {
+            color: var(--light-text);
+            line-height: 1.8;
+        }
+
+        /* ========== COURSES SECTION ========== */
+        .courses {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .course-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .course-content {
+            padding: 1.5rem;
+        }
+
+        .course-badge {
+            display: inline-block;
+            background: rgba(249, 115, 22, 0.1);
+            color: var(--accent-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .course-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--dark-text);
+        }
+
+        .course-instructor {
+            color: var(--light-text);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .course-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .course-price {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .course-rating {
+            color: #f59e0b;
+            font-size: 0.9rem;
+        }
+
+        /* ========== CTA SECTION ========== */
+        .cta {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: var(--dark-text);
+            color: white;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* ========== WATSON ASSISTANT WIDGET ========== */
+        .watson-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            z-index: 999;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .watson-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .watson-window {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 400px;
+            height: 600px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow-lg);
+            display: none;
+            flex-direction: column;
+            z-index: 999;
+            overflow: hidden;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        .watson-window.active {
+            display: flex;
+        }
+
+        .watson-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .watson-close {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .watson-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .watson-message {
+            display: flex;
+            gap: 0.8rem;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .watson-message.user {
+            flex-direction: row-reverse;
+        }
+
+        .watson-message-content {
+            max-width: 70%;
+            padding: 0.8rem 1rem;
+            border-radius: 12px;
+            word-wrap: break-word;
+        }
+
+        .watson-message.assistant .watson-message-content {
+            background: var(--light-bg);
+            color: var(--dark-text);
+        }
+
+        .watson-message.user .watson-message-content {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .watson-input {
+            border-top: 1px solid var(--border-color);
+            padding: 1rem;
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .watson-input input {
+            flex: 1;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 0.8rem;
+            font-family: 'Poppins', sans-serif;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .watson-input input:focus {
+            border-color: var(--primary-color);
+        }
+
+        .watson-send {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .watson-send:hover {
+            background: var(--secondary-color);
+        }
+
+        /* ========== WHATSAPP BUTTON ========== */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 100px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            z-index: 999;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1.8rem;
+            color: white;
+            text-decoration: none;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            background: #20ba5c;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 2rem 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .watson-window {
+                width: 90%;
+                height: 500px;
+                bottom: 80px;
+                right: 5%;
+                left: auto;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-visual {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ========== HEADER ========== -->
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i> EduFlow
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary">Sign In</button>
+                <button class="btn btn-primary">Get Started</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="stat-badge">
+                <i class="fas fa-spark"></i>
+                <span>AI-Powered Learning</span>
+            </div>
+            <h1>
+                Master Your Skills with
+                <span class="highlight">Personalized Learning</span>
+            </h1>
+            <p>
+                EduFlow is an intelligent education platform that adapts to your learning style, 
+                with expert instructors and cutting-edge courses designed for real-world success.
+            </p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary">Explore Courses</button>
+                <button class="btn btn-secondary">Watch Demo</button>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="floating-card card-1">
+                <div style="display: flex; align-items: center; gap: 0.8rem;">
+                    <i class="fas fa-star" style="color: var(--accent-color); font-size: 1.5rem;"></i>
+                    <div>
+                        <p style="font-weight: 700; margin: 0;">4.9/5 Rating</p>
+                        <p style="color: var(--light-text); font-size: 0.85rem; margin: 0;">12K+ Reviews</p>
+                    </div>
+                </div>
+            </div>
+            <div class="floating-card card-2">
+                <p style="font-weight: 700; margin-bottom: 0.5rem;">Active Users</p>
+                <p style="color: var(--accent-color); font-size: 1.8rem; font-weight: 800; margin: 0;">150K+</p>
+            </div>
+            <div class="floating-card card-3">
+                <p style="font-weight: 700; margin-bottom: 0.5rem;">Courses Available</p>
+                <p style="color: var(--primary-color); font-size: 1.8rem; font-weight: 800; margin: 0;">500+</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FEATURES SECTION ========== -->
+    <section class="features" id="features">
+        <h2 class="section-title">Why Choose EduFlow?</h2>
+        <p class="section-subtitle">Transform your learning journey with innovative features</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon" style="background: linear-gradient(135deg, rgba(30, 64, 175, 0.2), rgba(30, 64, 175, 0.05));">
+                    <i class="fas fa-robot" style="color: var(--primary-color);"></i>
+                </div>
+                <h3>AI Tutoring</h3>
+                <p>Get instant help from our Watson AI assistant. Ask questions, get explanations, and learn at your own pace with personalized guidance.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background: linear-gradient(135deg, rgba(15, 118, 110, 0.2), rgba(15, 118, 110, 0.05));">
+                    <i class="fas fa-chart-line" style="color: var(--secondary-color);"></i>
+                </div>
+                <h3>Progress Tracking</h3>
+                <p>Monitor your learning progress with detailed analytics. Get insights into your strengths and areas for improvement.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(249, 115, 22, 0.05));">
+                    <i class="fas fa-users" style="color: var(--accent-color);"></i>
+                </div>
+                <h3>Expert Instructors</h3>
+                <p>Learn from industry professionals with years of experience. Access live classes and recorded sessions anytime.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background: linear-gradient(135deg, rgba(30, 64, 175, 0.2), rgba(30, 64, 175, 0.05));">
+                    <i class="fas fa-certificate" style="color: var(--primary-color);"></i>
+                </div>
+                <h3>Certifications</h3>
+                <p>Earn recognized certificates upon course completion. Build your portfolio and boost your career prospects.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background: linear-gradient(135deg, rgba(15, 118, 110, 0.2), rgba(15, 118, 110, 0.05));">
+                    <i class="fas fa-mobile-alt" style="color: var(--secondary-color);"></i>
+                </div>
+                <h3>Learn Anywhere</h3>
+                <p>Access your courses on any device. Learn on your schedule with our fully responsive platform.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(249, 115, 22, 0.05));">
+                    <i class="fas fa-comments" style="color: var(--accent-color);"></i>
+                </div>
+                <h3>24/7 Support</h3>
+                <p>Connect with our support team via chat and WhatsApp. Get help whenever you need it.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== COURSES SECTION ========== -->
+    <section class="courses" id="courses">
+        <h2 class="section-title">Popular Courses</h2>
+        <p class="section-subtitle">Choose from our curated selection of in-demand courses</p>
+        <div class="courses-grid">
+            <div class="course-card">
+                <div class="course-image">📱</div>
+                <div class="course-content">
+                    <span class="course-badge">BEGINNER</span>
+                    <h3 class="course-title">Web Development Basics</h3>
+                    <p class="course-instructor">By Sarah Johnson</p>
+                    <div class="course-footer">
+                        <span class="course-price">$49</span>
+                        <span class="course-rating">⭐⭐⭐⭐⭐ (284)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="course-card">
+                <div class="course-image">🐍</div>
+                <div class="course-content">
+                    <span class="course-badge">INTERMEDIATE</span>
+                    <h3 class="course-title">Python for Data Science</h3>
+                    <p class="course-instructor">By Mike Chen</p>
+                    <div class="course-footer">
+                        <span class="course-price">$79</span>
+                        <span class="course-rating">⭐⭐⭐⭐⭐ (512)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="course-card">
+                <div class="course-image">📊</div>
+                <div class="course-content">
+                    <span class="course-badge">ADVANCED</span>
+                    <h3 class="course-title">Machine Learning Mastery</h3>
+                    <p class="course-instructor">By Dr. Emma Wilson</p>
+                    <div class="course-footer">
+                        <span class="course-price">$99</span>
+                        <span class="course-rating">⭐⭐⭐⭐⭐ (348)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="course-card">
+                <div class="course-image">🎨</div>
+                <div class="course-content">
+                    <span class="course-badge">BEGINNER</span>
+                    <h3 class="course-title">UI/UX Design Fundamentals</h3>
+                    <p class="course-instructor">By Alex Rivera</p>
+                    <div class="course-footer">
+                        <span class="course-price">$59</span>
+                        <span class="course-rating">⭐⭐⭐⭐ (215)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="course-card">
+                <div class="course-image">☁️</div>
+                <div class="course-content">
+                    <span class="course-badge">INTERMEDIATE</span>
+                    <h3 class="course-title">Cloud Computing with AWS</h3>
+                    <p class="course-instructor">By James Patterson</p>
+                    <div class="course-footer">
+                        <span class="course-price">$89</span>
+                        <span class="course-rating">⭐⭐⭐⭐⭐ (420)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="course-card">
+                <div class="course-image">🎓</div>
+                <div class="course-content">
+                    <span class="course-badge">PROFESSIONAL</span>
+                    <h3 class="course-title">Digital Marketing Strategy</h3>
+                    <p class="course-instructor">By Lisa Anderson</p>
+                    <div class="course-footer">
+                        <span class="course-price">$69</span>
+                        <span class="course-rating">⭐⭐⭐⭐ (189)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CTA SECTION ========== -->
+    <section class="cta" id="contact">
+        <h2>Ready to Start Learning?</h2>
+        <p>Join thousands of students transforming their careers with EduFlow</p>
+        <button class="btn btn-primary" style="background: white; color: var(--primary-color); border: none;">Start Free Trial Today</button>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About EduFlow</h3>
+                <p>We're committed to making quality education accessible to everyone around the world.</p>
+                <div class="social-links">
+                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Courses</h3>
+                <ul>
+                    <li><a href="#">Web Development</a></li>
+                    <li><a href="#">Data Science</a></li>
+                    <li><a href="#">Design</a></li>
+                    <li><a href="#">Business</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Community</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 EduFlow. All rights reserved. | Powered by Advanced AI Education Technology</p>
+        </div>
+    </footer>
+
+    <!-- ========== WATSON ASSISTANT ========== -->
+    <button class="watson-toggle" onclick="toggleWatson()" title="Open AI Assistant">
+        <i class="fas fa-comments"></i>
+    </button>
+
+    <div class="watson-window" id="watsonWindow">
+        <div class="watson-header">
+            <div>
+                <h3 style="margin: 0;">EduFlow Assistant</h3>
+                <p style="margin: 0; font-size: 0.85rem; opacity: 0.9;">Powered by Watson AI</p>
+            </div>
+            <button class="watson-close" onclick="toggleWatson()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="watson-content" id="watsonContent">
+            <div class="watson-message assistant">
+                <div class="watson-message-content">
+                    <strong>Hello! 👋</strong> I'm your EduFlow Assistant. I'm here to help you with course recommendations, learning tips, and any questions about our platform. How can I assist you today?
+                </div>
+            </div>
+        </div>
+        <div class="watson-input">
+            <input type="text" id="watsonInput" placeholder="Type your question..." onkeypress="handleWatsonInput(event)">
+            <button class="watson-send" onclick="sendWatsonMessage()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- ========== WHATSAPP BUTTON ========== -->
+    <a href="https://wa.me/1234567890?text=Hello%20EduFlow!%20I%20need%20help%20with%20my%20course." class="whatsapp-btn" target="_blank" title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // ========== WATSON ASSISTANT LOGIC ==========
+        const watson = {
+            responses: {
+                'hello': 'Hello! How can I help you with your learning journey today?',
+                'course': 'We offer courses in Web Development, Data Science, Design, Cloud Computing, and more! Which area interests you?',
+                'price': 'Our courses range from $49 to $99. We offer discounts for course bundles and seasonal promotions!',
+                'certificate': 'Yes! You\'ll receive a recognized certificate upon completing any course. Great for your resume!',
+                'support': 'We offer 24/7 support through chat, WhatsApp, and email. Contact us anytime you need help!',
+                'payment': 'We accept all major credit cards, PayPal, and various payment methods. Our platform is completely secure.',
+                'duration': 'Course durations vary from 4 to 12 weeks depending on the course level and your pace.',
+                'mobile': 'Yes! EduFlow is fully responsive. You can learn on your desktop, tablet, or smartphone anytime!',
+                'refund': 'We offer a 30-day money-back guarantee if you\'re not satisfied with your course.',
+                'instructor': 'All our instructors are industry experts with years of experience in their respective fields.',
+                'default': 'That\'s a great question! I\'m here to help. Could you provide more details or try asking about courses, pricing, certificates, or support?'
+            },
+
+            getResponse: function(userMessage) {
+                const message = userMessage.toLowerCase();
+                
+                for (let key in this.responses) {
+                    if (message.includes(key)) {
+                        return this.responses[key];
+                    }
+                }
+                return this.responses.default;
+            }
+        };
+
+        function toggleWatson() {
+            const window = document.getElementById('watsonWindow');
+            window.classList.toggle('active');
+        }
+
+        function sendWatsonMessage() {
+            const input = document.getElementById('watsonInput');
+            const content = document.getElementById('watsonContent');
+            const message = input.value.trim();
+
+            if (!message) return;
+
+            // Add user message
+            const userMsg = document.createElement('div');
+            userMsg.className = 'watson-message user';
+            userMsg.innerHTML = `<div class="watson-message-content">${escapeHtml(message)}</div>`;
+            content.appendChild(userMsg);
+
+            input.value = '';
+
+            // Simulate typing and add response
+            setTimeout(() => {
+                const response = watson.getResponse(message);
+                const assistantMsg = document.createElement('div');
+                assistantMsg.className = 'watson-message assistant';
+                assistantMsg.innerHTML = `<div class="watson-message-content">${response}</div>`;
+                content.appendChild(assistantMsg);
+
+                // Auto-scroll to bottom
+                content.scrollTop = content.scrollHeight;
+            }, 600);
+
+            // Auto-scroll to bottom
+            content.scrollTop = content.scrollHeight;
+        }
+
+        function handleWatsonInput(event) {
+            if (event.key === 'Enter') {
+                sendWatsonMessage();
+            }
+        }
+
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+
+        // ========== SMOOTH SCROLLING ==========
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ========== SCROLL ANIMATIONS ==========
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .course-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        // ========== BUTTON INTERACTIONS ==========
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Add ripple effect
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = event.clientX - rect.left - size / 2;
+                const y = event.clientY - rect.top - size / 2;
+
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+            });
+        });
+
+        // ========== WHATSAPP NUMBER SETUP ==========
+        // Replace '1234567890' with your actual WhatsApp Business number
+        // Example: https://wa.me/919876543210?text=Hello
+        // Format: Country code + Phone number (without + or -)
+    </script>
+</body>
+</html>
